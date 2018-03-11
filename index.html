@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Find PI to the Nth Digit</title>
+</head>
+<body>
+    <h1>Find π to the nth digit</h1>
+    <h4>A approximation of pi, based on Liu Hui's pi formula</h4>
+    <form id="form">
+        Get π to n decimal places <input id="decimal" placeholder="here" type="text" />
+        <input type="submit" value="Submit" onclick="approximatePi()"/>
+    </form>
+    <p id="result"></p>
+      
+      <script>
+        function approximatePi() {
+            const n = parseInt(document.getElementById("decimal").value)
+            const result = document.getElementById("result").innerHTML
+            const recursiveSqrt = n => n < 0 ? Math.sqrt(2 + 1) : Math.sqrt(2 + recursiveSqrt(n - 1))
+            const s = 768
+            const pi = s * Math.sqrt(2 - recursiveSqrt(6))
+
+            if (n > pi.toString().length) {
+                return document.getElementById("result").innerHTML = pi.toFixed(pi.toString().length - 1);
+            }
+
+            return document.getElementById("result").innerHTML = pi.toFixed(n - 1)
+        }
+    </script>
+</body>
+</html>
